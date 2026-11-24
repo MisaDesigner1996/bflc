@@ -1,0 +1,110 @@
+/* BFLC Design Option 4 — Scoped Architectural Design System */
+
+.bflc4-scope {
+  font-family: 'Manrope', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #171412;
+  background-color: #ffffff;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+}
+
+.bflc4-scope .b4-mono {
+  font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+.bflc4-scope .b4-display {
+  font-family: 'Manrope', 'Plus Jakarta Sans', sans-serif;
+  letter-spacing: -0.028em;
+}
+
+/* Signature Arrow-Reveal Interactive Pill Button */
+.bflc4-scope .b4-btn-primary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #8e1b1b;
+  color: #ffffff;
+  border-radius: 9999px;
+  padding: 0.85rem 1.85rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1;
+  transition: background-color 0.22s ease, padding-right 0.22s ease, transform 0.2s ease;
+  white-space: nowrap;
+}
+
+.bflc4-scope .b4-btn-primary::after {
+  content: '\2192';
+  position: absolute;
+  right: 1.15rem;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.bflc4-scope .b4-btn-primary:hover,
+.bflc4-scope .b4-btn-primary:focus-visible {
+  background-color: #701414;
+  padding-right: 2.75rem;
+}
+
+.bflc4-scope .b4-btn-primary:hover::after,
+.bflc4-scope .b4-btn-primary:focus-visible::after {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.bflc4-scope .b4-btn-outline-light {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  color: #ffffff;
+  border: 1.5px solid rgba(255, 255, 255, 0.36);
+  border-radius: 9999px;
+  padding: 0.82rem 1.75rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1;
+  transition: background-color 0.22s ease, color 0.22s ease, border-color 0.22s ease;
+  white-space: nowrap;
+}
+
+.bflc4-scope .b4-btn-outline-light:hover,
+.bflc4-scope .b4-btn-outline-light:focus-visible {
+  background-color: #ffffff;
+  color: #171412;
+  border-color: #ffffff;
+}
+
+.bflc4-scope .b4-btn-outline-dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  color: #171412;
+  border: 1.5px solid #d2cbc0;
+  border-radius: 9999px;
+  padding: 0.82rem 1.75rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1;
+  transition: background-color 0.22s ease, color 0.22s ease, border-color 0.22s ease;
+  white-space: nowrap;
+}
+
+.bflc4-scope .b4-btn-outline-dark:hover,
+.bflc4-scope .b4-btn-outline-dark:focus-visible {
+  background-color: #171412;
+  color: #ffffff;
+  border-color: #171412;
+}
+
+/* Subtle architectural dot matrix backdrop for dark sections */
+.bflc4-scope .b4-architectural-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 28px 28px;
+}

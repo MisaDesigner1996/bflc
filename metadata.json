@@ -1,0 +1,8 @@
+{
+  "name": "Bahrain Family Leisure Company B.S.C. (BFLC)",
+  "description": "Corporate website for Bahrain Family Leisure Company B.S.C. (BFLC) — a Bahrain-based hospitality and casual dining company listed on the Bahrain Bourse.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

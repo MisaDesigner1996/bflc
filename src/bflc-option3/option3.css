@@ -1,0 +1,118 @@
+.bflc3-scope {
+  --b3-canvas: #f6f4ec;
+  --b3-surface: #ffffff;
+  --b3-sand: #e6e2d1;
+  --b3-forest: #1b2e1e;
+  --b3-forest-hover: #253d29;
+  --b3-ink: #1a211b;
+  --b3-muted: #586058;
+  --b3-border: #e3dfd2;
+
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--b3-canvas);
+  color: var(--b3-ink);
+  overflow-x: clip;
+}
+
+/* Override global serif display rule inside Option 3 for modern grotesque clarity */
+.bflc3-scope h1,
+.bflc3-scope h2,
+.bflc3-scope h3,
+.bflc3-scope h4,
+.bflc3-scope .b3-display {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: -0.028em;
+}
+
+.bflc3-scope .b3-pill-forest {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 7px 7px 18px;
+  border-radius: 9999px;
+  background-color: var(--b3-forest);
+  color: #ffffff;
+  font-size: 13.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background-color 180ms ease, transform 180ms ease;
+}
+
+.bflc3-scope .b3-pill-forest:hover {
+  background-color: var(--b3-forest-hover);
+}
+
+.bflc3-scope .b3-pill-forest .b3-arrow-badge {
+  width: 28px;
+  height: 28px;
+  border-radius: 9999px;
+  background-color: rgba(255, 255, 255, 0.16);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bflc3-scope .b3-pill-white {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 7px 7px 18px;
+  border-radius: 9999px;
+  background-color: #ffffff;
+  color: var(--b3-ink);
+  border: 1px solid var(--b3-border);
+  font-size: 13.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: border-color 180ms ease, background-color 180ms ease;
+}
+
+.bflc3-scope .b3-pill-white:hover {
+  border-color: var(--b3-forest);
+  background-color: #faf9f5;
+}
+
+.bflc3-scope .b3-pill-white .b3-arrow-badge {
+  width: 28px;
+  height: 28px;
+  border-radius: 9999px;
+  background-color: var(--b3-forest);
+  color: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bflc3-scope .b3-pill-glass {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 7px 7px 18px;
+  border-radius: 9999px;
+  background-color: rgba(27, 46, 30, 0.72);
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  font-size: 13.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background-color 180ms ease;
+}
+
+.bflc3-scope .b3-pill-glass:hover {
+  background-color: rgba(27, 46, 30, 0.92);
+}
+
+.bflc3-scope .b3-pill-glass .b3-arrow-badge {
+  width: 28px;
+  height: 28px;
+  border-radius: 9999px;
+  background-color: #ffffff;
+  color: var(--b3-forest);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}

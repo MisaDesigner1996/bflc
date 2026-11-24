@@ -57,13 +57,13 @@ export const BflcOption4Header: React.FC<BflcOption4HeaderProps> = ({
             onClick={() => handleLinkClick('home')}
             className={`shrink-0 flex items-center transition-all ${
               isTransparentHero
-                ? 'bg-white rounded-lg px-2.5 py-1 shadow-xs'
-                : 'py-1'
+                ? 'py-1'
+                : 'bg-[#171412] rounded-lg px-2.5 py-1 shadow-xs'
             }`}
             aria-label="Bahrain Family Leisure Company B.S.C. — Home"
           >
             <img
-              src={BFLC_ASSET_LIBRARY.company.logo}
+              src="/assets/aistudio/Bahrain_Family_Dining_Logo_in_White_0fd67cf2.png"
               alt={BFLC_ASSET_LIBRARY.company.logoAlt}
               referrerPolicy="no-referrer"
               className="h-9 sm:h-10 w-auto object-contain"

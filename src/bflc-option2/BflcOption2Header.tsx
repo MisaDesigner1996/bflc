@@ -53,7 +53,7 @@ export const BflcOption2Header: React.FC<BflcOption2HeaderProps> = ({
           type="button"
           onClick={() => go('home')}
           className={`flex items-center shrink-0 rounded-[4px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8e1b1b] ${
-            isOverlayHero ? 'bg-white/95 px-2.5 py-1.5' : ''
+            isOverlayHero ? 'py-1' : 'bg-[#171412] px-2.5 py-1.5'
           }`}
           aria-label={`${COMPANY_INFO.legalName} — Home`}
         >
@@ -61,7 +61,7 @@ export const BflcOption2Header: React.FC<BflcOption2HeaderProps> = ({
             src={OPTION2_MEDIA.bflcLogo}
             alt="Bahrain Family Leisure Company B.S.C."
             referrerPolicy="no-referrer"
-            className="h-8 sm:h-9 w-auto object-contain"
+            className="h-9 sm:h-10 w-auto object-contain"
           />
         </button>
 

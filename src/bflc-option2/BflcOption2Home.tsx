@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ArrowLeft, ArrowRight, ArrowUpRight, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ArrowUpRight, CheckCircle2, FileText } from 'lucide-react';
 import {
+  AGM_ANNUAL_RESOURCES,
+  ANNUAL_REPORTS_ARCHIVE,
   COMPANY_HIGHLIGHTS,
   COMPANY_INFO,
   NEWS_ARTICLES,
@@ -55,6 +57,7 @@ export const BflcOption2Home: React.FC<BflcOption2HomeProps> = ({
     OPTION2_BUSINESS_DIVISIONS[0].id
   );
   const [featuredBrandIndex, setFeaturedBrandIndex] = useState(0);
+  const [selectedAnnualIdx, setSelectedAnnualIdx] = useState(0);
   const [capProgress, setCapProgress] = useState(0.32);
 
   const capSliderRef = useRef<HTMLDivElement | null>(null);
@@ -543,7 +546,161 @@ export const BflcOption2Home: React.FC<BflcOption2HomeProps> = ({
         </div>
       </section>
 
-      {/* 6. OUR CAPABILITIES — Why BFLC Horizontal Portrait Strip */}
+      {/* 6. ANNUAL REPORTS & GOVERNANCE — Authentic bflc.com.bh Shareholder Archive */}
+      <section className="bg-[#f8f6f2] py-20 sm:py-28 px-5 sm:px-9 border-b border-[#e4dfd7]">
+        <div className="max-w-[1380px] mx-auto space-y-12">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+            <div className="max-w-[700px] space-y-3">
+              <p className="b2-kicker">
+                Annual Reports · {COMPANY_INFO.bourseExchange}: {COMPANY_INFO.bourseSymbol}
+              </p>
+              <h2 className="b2-title-l text-[#171412]">
+                Annual Reports &amp; <span className="b2-italic">Governance</span> Archive
+              </h2>
+              <p className="b2-desc-l text-[#665f57]">
+                Official annual reports, ESG sustainability disclosures, audited financial
+                statements, and Annual General Meeting records published by{' '}
+                {COMPANY_INFO.legalName}.
+              </p>
+            </div>
+            <div className="flex flex-wrap items-center gap-3">
+              <button
+                type="button"
+                onClick={() => onNavigate('investors')}
+                className="b2-app-button"
+              >
+                <span>Investor Relations</span>
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              </button>
+              <a
+                href={ANNUAL_REPORTS_ARCHIVE[selectedAnnualIdx].officialUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="b2-outline-button bg-white"
+              >
+                <span>Official Archive</span>
+                <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+              </a>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            {/* Left: Interactive Year Index */}
+            <div className="lg:col-span-5 border-t border-[#e4dfd7]">
+              {ANNUAL_REPORTS_ARCHIVE.map((report, idx) => {
+                const active = idx === selectedAnnualIdx;
+                return (
+                  <button
+                    key={report.year}
+                    type="button"
+                    onClick={() => setSelectedAnnualIdx(idx)}
+                    className={`w-full py-4 border-b border-[#e4dfd7] flex items-center justify-between gap-4 text-left transition-colors group ${
+                      active ? 'text-[#171412]' : 'text-[#665f57] hover:text-[#171412]'
+                    }`}
+                  >
+                    <div className="min-w-0 space-y-0.5">
+                      <div className="flex items-center gap-2.5">
+                        <span className="text-[12px] tabular-nums text-[#8e1b1b] font-medium">
+                          {report.year}
+                        </span>
+                        <span className="text-[15.5px] font-medium truncate">
+                          {report.reportTitle}
+                        </span>
+                      </div>
+                      <p className="text-[12px] text-[#665f57] truncate">
+                        {report.languages}
+                        {report.esgTitle ? ` · ${report.esgTitle}` : ''}
+                      </p>
+                    </div>
+                    <ArrowRight
+                      className={`w-4 h-4 shrink-0 transition-transform duration-200 ${
+                        active
+                          ? 'translate-x-0.5 text-[#8e1b1b]'
+                          : 'text-[#665f57] group-hover:translate-x-1 group-hover:text-[#171412]'
+                      }`}
+                      aria-hidden="true"
+                    />
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Right: Selected Annual Filing Details & AGM Resources */}
+            <div className="lg:col-span-7 bg-white border border-[#e4dfd7] rounded-[6px] p-7 sm:p-10 space-y-8">
+              <div className="space-y-4">
+                <div className="flex flex-wrap items-center justify-between gap-2 text-[12.5px] text-[#665f57]">
+                  <span className="text-[#8e1b1b] font-medium">
+                    {ANNUAL_REPORTS_ARCHIVE[selectedAnnualIdx].statusLabel}
+                  </span>
+                  <span>
+                    {ANNUAL_REPORTS_ARCHIVE[selectedAnnualIdx].languages} ·{' '}
+                    {ANNUAL_REPORTS_ARCHIVE[selectedAnnualIdx].auditor}
+                  </span>
+                </div>
+                <h3 className="b2-title-m text-[#171412]">
+                  {ANNUAL_REPORTS_ARCHIVE[selectedAnnualIdx].reportTitle}
+                </h3>
+                <p className="b2-desc-l text-[#665f57]">
+                  {ANNUAL_REPORTS_ARCHIVE[selectedAnnualIdx].summary}
+                </p>
+
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-1">
+                  {ANNUAL_REPORTS_ARCHIVE[selectedAnnualIdx].keyMetrics.map((metric) => (
+                    <div
+                      key={metric.label}
+                      className="bg-[#f8f6f2] border border-[#e4dfd7] rounded-[4px] p-3 space-y-0.5"
+                    >
+                      <p className="text-[11px] uppercase tracking-wider text-[#665f57]">
+                        {metric.label}
+                      </p>
+                      <p className="text-[15.5px] font-semibold text-[#171412] tabular-nums">
+                        {metric.value}
+                      </p>
+                      {metric.note && (
+                        <p className="text-[11px] text-[#8e1b1b]">{metric.note}</p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+
+                <p className="text-[13px] text-[#665f57] leading-relaxed bg-[#f8f6f2] border border-[#e4dfd7] rounded-[4px] p-3.5">
+                  {ANNUAL_REPORTS_ARCHIVE[selectedAnnualIdx].governanceNote}
+                </p>
+
+                <ul className="pt-1 space-y-2">
+                  {ANNUAL_REPORTS_ARCHIVE[selectedAnnualIdx].documents.map((docTitle) => (
+                    <li
+                      key={docTitle}
+                      className="flex items-start gap-2.5 text-[13.5px] text-[#171412]"
+                    >
+                      <FileText
+                        className="w-4 h-4 text-[#8e1b1b] mt-0.5 shrink-0"
+                        aria-hidden="true"
+                      />
+                      <span>{docTitle}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="pt-6 border-t border-[#e4dfd7] grid grid-cols-1 sm:grid-cols-2 gap-5">
+                {AGM_ANNUAL_RESOURCES.map((item) => (
+                  <div key={item.title} className="space-y-1">
+                    <h4 className="text-[13.5px] font-medium text-[#171412]">
+                      {item.title}
+                    </h4>
+                    <p className="text-[12.5px] text-[#665f57] leading-relaxed">
+                      {item.detail}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 7. OUR CAPABILITIES — Why BFLC Horizontal Portrait Strip */}
       <section className="bg-white py-20 sm:py-28 pl-5 sm:pl-9 border-b border-[#e4dfd7]">
         <div className="max-w-[1380px] mx-auto">
           <div className="pr-5 sm:pr-9 flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10 sm:mb-12">

@@ -7,7 +7,7 @@ export const OPTION2_MEDIA = {
   cateringBanquet: BFLC_ASSET_LIBRARY.brands.kazbahCatering.pattern,
   hospitalityLeadership: BFLC_ASSET_LIBRARY.restaurants.loungeBar.url,
   manamaSkylineCta: BFLC_ASSET_LIBRARY.restaurants.bennigansBarWide.url,
-  bflcLogo: BFLC_ASSET_LIBRARY.company.logo,
+  bflcLogo: '/assets/aistudio/Bahrain_Family_Dining_Logo_in_White_0fd67cf2.png',
   diningRoom: BFLC_ASSET_LIBRARY.restaurants.cucinaDiningRoom.url,
   loungeBar: BFLC_ASSET_LIBRARY.restaurants.loungeBar.url,
   bennigansBarWide: BFLC_ASSET_LIBRARY.brands.bennigans.wideInterior,

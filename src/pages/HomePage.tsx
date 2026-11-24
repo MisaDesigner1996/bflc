@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   ArrowRight,
+  ArrowUpRight,
   Building2,
   CheckCircle2,
   Compass,
+  FileText,
   TrendingUp,
   Users,
 } from 'lucide-react';
 import { MediaFrame } from '../components/MediaFrame';
 import { BFLC_ASSET_LIBRARY } from '../assets/bflcAssetLibrary';
 import {
+  AGM_ANNUAL_RESOURCES,
+  ANNUAL_REPORTS_ARCHIVE,
   BFLC_ASSETS,
   COMPANY_HIGHLIGHTS,
   COMPANY_INFO,
@@ -55,6 +59,8 @@ const BUSINESS_SHOWCASE_CARDS = [
 const PILLAR_ICONS = [Compass, Users, CheckCircle2, TrendingUp];
 
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
+  const [selectedAnnualIdx, setSelectedAnnualIdx] = useState(0);
+
   const scrollToAbout = () => {
     const el = document.getElementById('about-bflc');
     if (el) {
@@ -347,6 +353,142 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 </p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Annual Reports & Disclosures */}
+      <section className="py-16 lg:py-24 bg-white border-b border-[#E5E0D8]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="space-y-3 max-w-2xl">
+              <p className="text-xs font-medium text-[#78716C] tracking-wide">
+                Annual Reports · {COMPANY_INFO.bourseExchange}: {COMPANY_INFO.bourseSymbol}
+              </p>
+              <h2 className="font-display text-3xl sm:text-4xl font-semibold text-[#1C1917] tracking-tight">
+                Annual Reports, ESG &amp; AGM Disclosures
+              </h2>
+              <p className="text-base text-[#44403C] leading-relaxed">
+                Statutory annual reports, audited IFRS financial statements, and Annual
+                General Meeting documents published by {COMPANY_INFO.legalName} on{' '}
+                {COMPANY_INFO.website}.
+              </p>
+            </div>
+            <div className="flex flex-wrap items-center gap-3">
+              <button
+                type="button"
+                onClick={() => onNavigate('investors')}
+                className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white bg-[#991B1B] hover:bg-[#7F1D1D] rounded-md whitespace-nowrap shrink-0 transition-colors"
+              >
+                <span>Investor Relations</span>
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              </button>
+              <a
+                href={ANNUAL_REPORTS_ARCHIVE[selectedAnnualIdx].officialUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-[#1C1917] bg-white border border-[#D6D3D1] hover:border-[#1C1917] rounded-md whitespace-nowrap shrink-0 transition-colors"
+              >
+                <span>bflc.com.bh Archive</span>
+                <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+              </a>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap gap-2">
+            {ANNUAL_REPORTS_ARCHIVE.map((report, idx) => {
+              const active = idx === selectedAnnualIdx;
+              return (
+                <button
+                  key={report.year}
+                  type="button"
+                  onClick={() => setSelectedAnnualIdx(idx)}
+                  className={`px-4 py-2 text-sm font-semibold rounded-md border transition-colors ${
+                    active
+                      ? 'bg-[#991B1B] text-white border-[#991B1B]'
+                      : 'bg-[#FAF9F6] text-[#44403C] border-[#E5E0D8] hover:border-[#1C1917]'
+                  }`}
+                >
+                  {report.year}
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <div className="lg:col-span-7 bg-[#FAF9F6] border border-[#E5E0D8] rounded-lg p-6 sm:p-8 space-y-5">
+              <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-[#78716C]">
+                <span className="font-semibold text-[#991B1B]">
+                  {ANNUAL_REPORTS_ARCHIVE[selectedAnnualIdx].statusLabel}
+                </span>
+                <span>
+                  {ANNUAL_REPORTS_ARCHIVE[selectedAnnualIdx].languages} ·{' '}
+                  {ANNUAL_REPORTS_ARCHIVE[selectedAnnualIdx].auditor}
+                </span>
+              </div>
+              <h3 className="font-display text-2xl font-semibold text-[#1C1917]">
+                {ANNUAL_REPORTS_ARCHIVE[selectedAnnualIdx].reportTitle}
+              </h3>
+              <p className="text-sm sm:text-base text-[#44403C] leading-relaxed">
+                {ANNUAL_REPORTS_ARCHIVE[selectedAnnualIdx].summary}
+              </p>
+
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-1">
+                {ANNUAL_REPORTS_ARCHIVE[selectedAnnualIdx].keyMetrics.map((metric) => (
+                  <div
+                    key={metric.label}
+                    className="bg-white border border-[#E5E0D8] rounded-md p-3 space-y-0.5"
+                  >
+                    <p className="text-[11px] font-medium uppercase tracking-wide text-[#78716C]">
+                      {metric.label}
+                    </p>
+                    <p className="font-display text-base font-semibold text-[#1C1917] tabular-nums">
+                      {metric.value}
+                    </p>
+                    {metric.note && (
+                      <p className="text-[11px] text-[#991B1B] font-medium">
+                        {metric.note}
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              <p className="text-xs sm:text-sm text-[#44403C] leading-relaxed bg-white border border-[#E5E0D8] rounded-md p-3.5">
+                {ANNUAL_REPORTS_ARCHIVE[selectedAnnualIdx].governanceNote}
+              </p>
+
+              <ul className="space-y-2.5 pt-1">
+                {ANNUAL_REPORTS_ARCHIVE[selectedAnnualIdx].documents.map((docTitle) => (
+                  <li
+                    key={docTitle}
+                    className="flex items-start gap-2.5 text-sm text-[#1C1917]"
+                  >
+                    <FileText
+                      className="w-4 h-4 text-[#991B1B] mt-0.5 shrink-0"
+                      aria-hidden="true"
+                    />
+                    <span>{docTitle}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="lg:col-span-5 bg-white border border-[#E5E0D8] rounded-lg p-6 sm:p-8 space-y-4">
+              <p className="text-xs font-semibold uppercase tracking-wide text-[#991B1B]">
+                Annual General Meeting &amp; Governance
+              </p>
+              <div className="divide-y divide-[#E5E0D8]">
+                {AGM_ANNUAL_RESOURCES.map((item) => (
+                  <div key={item.title} className="py-3.5 first:pt-0 last:pb-0 space-y-1">
+                    <h4 className="text-sm font-semibold text-[#1C1917]">{item.title}</h4>
+                    <p className="text-xs sm:text-sm text-[#57534E] leading-relaxed">
+                      {item.detail}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>

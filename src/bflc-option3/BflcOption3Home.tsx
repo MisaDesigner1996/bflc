@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { ArrowRight, ArrowUpRight, Check, Minus, Plus } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Check, FileText, Minus, Plus } from 'lucide-react';
 import {
+  AGM_ANNUAL_RESOURCES,
+  ANNUAL_REPORTS_ARCHIVE,
   BUSINESS_OPERATIONS,
   COMPANY_HIGHLIGHTS,
   COMPANY_INFO,
@@ -44,6 +46,7 @@ export const BflcOption3Home: React.FC<BflcOption3HomeProps> = ({
   onSelectArticle,
 }) => {
   const [openFaqIdx, setOpenFaqIdx] = useState<number | null>(0);
+  const [selectedAnnualIdx, setSelectedAnnualIdx] = useState(0);
 
   const scrollToHighlights = () => {
     const el = document.getElementById('bflc3-highlights');
@@ -763,6 +766,144 @@ export const BflcOption3Home: React.FC<BflcOption3HomeProps> = ({
                   </div>
                 );
               })}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ANNUAL REPORTS & DISCLOSURES */}
+      <section className="px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1340px] mx-auto space-y-8">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+            <div className="space-y-3 max-w-2xl">
+              <p className="text-[12px] font-semibold tracking-wider uppercase text-[#586058]">
+                Annual Reports · {COMPANY_INFO.bourseExchange}: {COMPANY_INFO.bourseSymbol}
+              </p>
+              <h2 className="text-3xl sm:text-4xl font-semibold text-[#1a211b] leading-[1.1]">
+                Annual Reports, ESG Filings &amp; AGM Disclosures
+              </h2>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-3">
+              <button
+                type="button"
+                onClick={() => onNavigate('investors')}
+                className="b3-pill-forest"
+              >
+                <span>Investor Portal</span>
+                <span className="b3-arrow-badge">
+                  <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
+                </span>
+              </button>
+              <a
+                href={ANNUAL_REPORTS_ARCHIVE[selectedAnnualIdx].officialUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="b3-pill-white"
+              >
+                <span>bflc.com.bh Reports</span>
+                <span className="b3-arrow-badge">
+                  <ArrowUpRight className="w-3.5 h-3.5" aria-hidden="true" />
+                </span>
+              </a>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap gap-2">
+            {ANNUAL_REPORTS_ARCHIVE.map((report, idx) => {
+              const active = idx === selectedAnnualIdx;
+              return (
+                <button
+                  key={report.year}
+                  type="button"
+                  onClick={() => setSelectedAnnualIdx(idx)}
+                  className={`px-4 py-2 rounded-full text-[13px] font-semibold transition-colors ${
+                    active
+                      ? 'bg-[#1b2e1e] text-white'
+                      : 'bg-white text-[#586058] border border-[#e3dfd2] hover:text-[#1a211b]'
+                  }`}
+                >
+                  {report.year}
+                </button>
+              );
+            })}
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            <div className="lg:col-span-7 bg-white border border-[#e3dfd2] rounded-2xl p-7 sm:p-9 space-y-5">
+              <div className="flex flex-wrap items-center justify-between gap-2 text-[12.5px]">
+                <span className="font-semibold text-[#1b2e1e]">
+                  {ANNUAL_REPORTS_ARCHIVE[selectedAnnualIdx].statusLabel}
+                </span>
+                <span className="text-[#586058]">
+                  {ANNUAL_REPORTS_ARCHIVE[selectedAnnualIdx].languages} ·{' '}
+                  {ANNUAL_REPORTS_ARCHIVE[selectedAnnualIdx].auditor}
+                </span>
+              </div>
+              <h3 className="text-2xl font-semibold text-[#1a211b]">
+                {ANNUAL_REPORTS_ARCHIVE[selectedAnnualIdx].reportTitle}
+              </h3>
+              <p className="text-[14.5px] text-[#586058] leading-relaxed">
+                {ANNUAL_REPORTS_ARCHIVE[selectedAnnualIdx].summary}
+              </p>
+
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-1">
+                {ANNUAL_REPORTS_ARCHIVE[selectedAnnualIdx].keyMetrics.map((metric) => (
+                  <div
+                    key={metric.label}
+                    className="bg-[#f4f1ea] border border-[#e3dfd2] rounded-xl p-3 space-y-0.5"
+                  >
+                    <p className="text-[11px] font-semibold uppercase tracking-wide text-[#586058]">
+                      {metric.label}
+                    </p>
+                    <p className="text-[15.5px] font-semibold text-[#1a211b] tabular-nums">
+                      {metric.value}
+                    </p>
+                    {metric.note && (
+                      <p className="text-[11px] text-[#1b2e1e] font-medium">
+                        {metric.note}
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              <p className="text-[13px] text-[#3c443d] leading-relaxed bg-[#f4f1ea] border border-[#e3dfd2] rounded-xl p-3.5">
+                {ANNUAL_REPORTS_ARCHIVE[selectedAnnualIdx].governanceNote}
+              </p>
+
+              <ul className="space-y-2.5 pt-1">
+                {ANNUAL_REPORTS_ARCHIVE[selectedAnnualIdx].documents.map((docTitle) => (
+                  <li
+                    key={docTitle}
+                    className="flex items-start gap-2.5 text-[14px] text-[#1a211b]"
+                  >
+                    <FileText
+                      className="w-4 h-4 text-[#1b2e1e] mt-0.5 shrink-0"
+                      aria-hidden="true"
+                    />
+                    <span>{docTitle}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="lg:col-span-5 bg-[#e6e2d1] rounded-2xl p-7 sm:p-9 space-y-4">
+              <p className="text-[12px] font-semibold tracking-wider uppercase text-[#586058]">
+                Annual General Meeting &amp; Governance
+              </p>
+              <div className="space-y-4">
+                {AGM_ANNUAL_RESOURCES.map((item) => (
+                  <div key={item.title} className="space-y-1">
+                    <h4 className="text-[14.5px] font-semibold text-[#1a211b]">
+                      {item.title}
+                    </h4>
+                    <p className="text-[13px] text-[#3c443d] leading-relaxed">
+                      {item.detail}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

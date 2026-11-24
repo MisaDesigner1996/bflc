@@ -67,14 +67,14 @@ export const BflcOption2Footer: React.FC<BflcOption2FooterProps> = ({ onNavigate
               <button
                 type="button"
                 onClick={() => onNavigate('home')}
-                className="inline-block bg-white rounded-[4px] px-3 py-2"
+                className="inline-flex items-center py-1"
                 aria-label="Return to BFLC Home"
               >
                 <img
-                  src={BFLC_ASSET_LIBRARY.company.logo}
+                  src="/assets/aistudio/Bahrain_Family_Dining_Logo_in_White_0fd67cf2.png"
                   alt={BFLC_ASSET_LIBRARY.company.logoAlt}
                   referrerPolicy="no-referrer"
-                  className="h-9 w-auto object-contain"
+                  className="h-10 w-auto object-contain"
                 />
               </button>
               <div className="space-y-0.5 text-[13px]">

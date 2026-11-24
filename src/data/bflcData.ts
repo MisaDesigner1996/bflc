@@ -400,6 +400,201 @@ export const INVESTOR_DOCUMENTS: InvestorDocument[] = [
   },
 ];
 
+export interface AnnualReportMetric {
+  label: string;
+  value: string;
+  note?: string;
+}
+
+export interface AnnualReportEntry {
+  year: string;
+  reportTitle: string;
+  esgTitle?: string;
+  financialsTitle: string;
+  languages: string;
+  statusLabel: string;
+  auditor: string;
+  summary: string;
+  governanceNote: string;
+  officialUrl: string;
+  keyMetrics: AnnualReportMetric[];
+  documents: string[];
+}
+
+export const ANNUAL_REPORTS_ARCHIVE: AnnualReportEntry[] = [
+  {
+    year: '2025',
+    reportTitle: 'BFLC Annual Report 2025',
+    esgTitle: 'ESG Report – FY 2025 (Published 29 June 2026)',
+    financialsTitle: 'Audited Financial Statements — Year Ended 31 December 2025',
+    languages: 'English & Arabic',
+    statusLabel: 'FY 2025 Audited Filing · C.R. No. 32196',
+    auditor: 'BDO (Kingdom of Bahrain)',
+    officialUrl: 'https://www.bflc.com.bh/annual-reports/',
+    summary:
+      'For the year ended 31 December 2025, Bahrain Family Leisure Company B.S.C. recorded ~BD 1.293M revenue and narrowed its net loss to BD 104,663 (Fils 11.63 per share, down from BD 270,602 in 2024), with no dividend proposed. Its FY 2025 ESG Report aligns with the Central Bank of Bahrain (CBB) ESG Reporting Module, GRI, and UN SDGs.',
+    governanceNote:
+      'FY 2025 Board: Chairman Abdul Latif Khalid Al Aujan, Vice-Chairman Ahmed Mohammed Janahi, Directors Bashar Mohammed Ali Alhassan, Sharif Mohammed Ahmadi, Reem Alrayes, Mohamed Algharbi, Farooq Mohamed Alkhaja (joined 14 Oct 2025), and Adel Salman Kanoo (until 14 Oct 2025). At the 30 March 2026 AGM/EGM (Gulf Hotel Al Dana Hall 4), shareholders approved the Truffle Hospitality Holding W.L.L. share-swap acquisition (DGC 58% / existing BFLC holders 42%), followed by a new Board chaired by Mohamed Nedham Khonji.',
+    keyMetrics: [
+      { label: 'Total Revenue', value: '~BD 1.293M', note: '-4.8% vs. FY 2024' },
+      { label: 'Net Loss for Year', value: 'BD (104,663)', note: 'Fils (11.63) / share' },
+      { label: 'Total Assets', value: 'BD 1,609,606', note: 'As at 31 Dec 2025' },
+      { label: 'Shareholders’ Equity', value: 'BD 998,028', note: 'Share Capital: BD 4.00M' },
+    ],
+    documents: [
+      'BFLC Annual Report 2025 — Board of Directors Report & Chairman’s Statement',
+      'Audited Financial Statements 2025 (IFRS · Audited by BDO Bahrain · No dividend proposed)',
+      'ESG Report – FY 2025 (CBB ESG Reporting Module, GRI & UN SDGs · Published 29 June 2026)',
+      '2026 AGM (30 March 2026) & EGM Share-Swap Circulars — Gulf Hotel Al Dana Hall 4',
+    ],
+  },
+  {
+    year: '2024',
+    reportTitle: 'BFLC Annual Report 2024',
+    esgTitle: 'ESG Report 2024',
+    financialsTitle: 'BFLC Financial Statements — Year Ended 31 December 2024',
+    languages: 'English & Arabic',
+    statusLabel: 'FY 2024 Audited Filing · C.R. No. 32196',
+    auditor: 'BDO (Kingdom of Bahrain)',
+    officialUrl: 'https://www.bflc.com.bh/annual-reports/',
+    summary:
+      'In fiscal year 2024, revenue rose 14.8% year-on-year to ~BD 1.358M across Bennigan’s (Juffair & Amwaj Islands), Cucina Italiana, and Kazbah Catering. Audited total equity at 31 December 2024 stood at BD 1,102,691 (Share Capital BD 4,000,000; Statutory Reserve BD 794,927; Capital Reserve BD 68,245; Treasury Shares BD (400,000); Accumulated Losses BD (3,360,481)).',
+    governanceNote:
+      'FY 2024 Board: Chairman Abdul Latif Khalid Al Aujan, Vice-Chairman Ahmed Mohammed Janahi, Managing Director Mohamed Al Kayed, Directors Adel Salman Kanoo, Bashar Mohammed Ali Alhassan, Sharif Mohammed Ahmadi, Reem Alrayes (joined 26 Sep 2024), and Charbel Sarkis (resigned 5 Sep 2024). AGM & EGM held on 25 March 2025 at 12:00 Noon at Gulf Hotel (Awal-2).',
+    keyMetrics: [
+      { label: 'Total Revenue', value: '~BD 1.358M', note: '+14.8% vs. FY 2023' },
+      { label: 'Net Loss for Year', value: 'BD (270,602)', note: 'Fils (30.07) / share' },
+      { label: 'Total Assets', value: 'BD 1,915,830', note: 'As at 31 Dec 2024' },
+      { label: 'Total Equity', value: 'BD 1,102,691', note: 'Statutory Reserve: BD 794,927' },
+    ],
+    documents: [
+      'BFLC Annual Report 2024 (Chairman’s Review, Directors’ Report & Operations Review)',
+      'BFLC Financial Statements 2024 (English & Arabic · Audited by BDO Bahrain)',
+      'ESG Report 2024 (Restaurant Workforce, Food Safety & CBB Governance Compliance)',
+      'AGM & EGM Notice (25 March 2025 · Gulf Hotel Awal-2 · English & Arabic Proxy)',
+    ],
+  },
+  {
+    year: '2023',
+    reportTitle: 'BFLC Annual Report 2023',
+    financialsTitle: 'BFLC Financial Statements — Year Ended 31 December 2023',
+    languages: 'English & Arabic',
+    statusLabel: 'FY 2023 Audited Filing · C.R. No. 32196',
+    auditor: 'BDO (Kingdom of Bahrain)',
+    officialUrl: 'https://www.bflc.com.bh/annual-reports/',
+    summary:
+      'For the year ended 31 December 2023, BFLC expanded operating revenue by 23.6% year-on-year to ~BD 1.183M. Year-end audited total equity stood at BD 1,373,293 on BD 4,000,000 paid-up share capital, net of BD (400,000) treasury shares and BD (3,089,879) accumulated losses.',
+    governanceNote:
+      'Governed under the Ministry of Industry & Commerce (MOIC) Commercial Companies Law and CBB High-Level Controls, with full-year statutory audit conducted by BDO Bahrain and disclosures filed on Bahrain Bourse (FAMILY).',
+    keyMetrics: [
+      { label: 'Total Revenue', value: '~BD 1.183M', note: '+23.6% vs. FY 2022' },
+      { label: 'Shareholders’ Equity', value: 'BD 1,373,293', note: 'As at 31 Dec 2023' },
+      { label: 'Paid-Up Capital', value: 'BD 4,000,000', note: 'Treasury Shares: BD (400,000)' },
+      { label: 'Reporting Basis', value: 'IFRS Audited', note: 'External Auditor: BDO' },
+    ],
+    documents: [
+      'BFLC Annual Report 2023 (Corporate Review & Governance Disclosures)',
+      'BFLC Financial Statements 2023 (English & Arabic · Audited by BDO)',
+      'Statement of Changes in Equity & Financial Position Notes (31 Dec 2023)',
+    ],
+  },
+  {
+    year: '2022',
+    reportTitle: 'BFLC Annual Report 2022',
+    financialsTitle: 'BFLC Financial Statements — Year Ended 31 December 2022',
+    languages: 'Separate English & Arabic Editions',
+    statusLabel: 'FY 2022 Audited Filing · C.R. No. 32196',
+    auditor: 'BDO (Kingdom of Bahrain)',
+    officialUrl: 'https://www.bflc.com.bh/annual-reports/',
+    summary:
+      'Published on www.bflc.com.bh/annual-reports/ in separate English and Arabic editions together with audited IFRS financial statements, detailing dining recovery across Bennigan’s (Juffair & Amwaj Islands), Cucina Italiana, and Kazbah Catering.',
+    governanceNote:
+      'Includes the full Board of Directors Corporate Governance Compliance Report, Audit Committee oversight summary, Key Person Dealing compliance, and ratified Annual General Meeting resolutions.',
+    keyMetrics: [
+      { label: 'Company Reg.', value: 'C.R. 32196', note: 'Est. 13 July 1994' },
+      { label: 'Paid-Up Capital', value: 'BD 4,000,000', note: 'Bahrain Bourse: FAMILY' },
+      { label: 'Accounting Standard', value: 'IFRS', note: 'Audited by BDO Bahrain' },
+      { label: 'Published Editions', value: 'EN & AR PDF', note: 'Hosted on bflc.com.bh' },
+    ],
+    documents: [
+      'BFLC Annual Report 2022 (English Edition)',
+      'BFLC Annual Report 2022 (Arabic Edition)',
+      'BFLC Financial Statements 2022 (English · IFRS Audited)',
+    ],
+  },
+  {
+    year: '2021',
+    reportTitle: 'BFLC Annual Report 2021',
+    financialsTitle: 'BFLC Financial Statements — Year Ended 31 December 2021',
+    languages: 'Combined Arabic & English Edition',
+    statusLabel: 'FY 2021 Audited Filing · C.R. No. 32196',
+    auditor: 'BDO (Kingdom of Bahrain)',
+    officialUrl: 'https://www.bflc.com.bh/annual-reports/',
+    summary:
+      'Issued on www.bflc.com.bh as a combined Arabic and English Annual Report alongside BFLC Financial Statements 2021 for the fiscal year ended 31 December 2021, documenting operational resilience and cost controls.',
+    governanceNote:
+      'Filed in accordance with Bahrain Bourse listing rules and Central Bank of Bahrain disclosure directives, detailing shareholder structure, statutory reserves, and Board attendance.',
+    keyMetrics: [
+      { label: 'Publication Format', value: 'Bilingual PDF', note: 'Combined AR & EN' },
+      { label: 'Paid-Up Capital', value: 'BD 4,000,000', note: 'Treasury Shares: BD (400,000)' },
+      { label: 'Ticker / CR', value: 'FAMILY · 32196', note: 'Bahrain Bourse' },
+      { label: 'Compliance', value: 'CBB & MOIC', note: 'IFRS Audited Accounts' },
+    ],
+    documents: [
+      'BFLC Annual Report 2021 (Combined Arabic & English Edition)',
+      'BFLC Financial Statements 2021 (English)',
+      'Independent Auditor’s Report & Financial Position Notes (31 Dec 2021)',
+    ],
+  },
+  {
+    year: '2016–2020',
+    reportTitle: 'Historical Annual Reports Archive (2016–2020)',
+    financialsTitle: 'Audited IFRS Annual Financial Statements (2016–2020)',
+    languages: 'English & Arabic',
+    statusLabel: 'Multi-Year Corporate Archive · C.R. No. 32196',
+    auditor: 'External Statutory Auditors',
+    officialUrl: 'https://www.bflc.com.bh/annual-reports/',
+    summary:
+      'Multi-year statutory archive maintained at www.bflc.com.bh/annual-reports/ preserving complete historical Annual Reports and audited IFRS financial statements from 2016 through 2020.',
+    governanceNote:
+      'Demonstrates continuous public shareholding transparency on the Bahrain Bourse since 1994, recording dividend history, property/hospitality investments, and AGM approvals.',
+    keyMetrics: [
+      { label: 'Archive Span', value: '2016 – 2020', note: '5 Consecutive Years' },
+      { label: 'Official Portal', value: 'bflc.com.bh', note: '/annual-reports/' },
+      { label: 'Entity Type', value: 'B.S.C. Public', note: 'Kingdom of Bahrain' },
+      { label: 'Share Capital', value: 'BD 4,000,000', note: 'Bahraini Dinars (BD)' },
+    ],
+    documents: [
+      'BFLC Annual Report 2020 (English & Arabic) & Financial Statements',
+      'BFLC Annual Reports & Audited Accounts (2018 – 2019)',
+      'BFLC Annual Reports & Audited Accounts (2016 – 2017)',
+    ],
+  },
+];
+
+export const AGM_ANNUAL_RESOURCES = [
+  {
+    title: 'Annual General Meeting (AGM) Schedule',
+    detail:
+      'FY 2025 AGM convened 30 March 2026 (Gulf Hotel Al Dana Hall 4; EGM follow-up 6 April 2026); FY 2024 AGM/EGM held 25 March 2025 at Gulf Hotel (Awal-2).',
+  },
+  {
+    title: 'BFLC Proxy, Agenda & Registration',
+    detail:
+      'Bilingual English/Arabic proxy forms, virtual assembly links, and registration notices published for Bahrain Bourse (FAMILY) shareholders ahead of each AGM.',
+  },
+  {
+    title: 'Strategic Truffle Hospitality Integration',
+    detail:
+      'EGM-ratified share-swap integrating Truffle Hospitality Holding W.L.L. (DGC 58% / BFLC shareholders 42%), expanding the group past 20 regional F&B concepts.',
+  },
+  {
+    title: 'Regulatory, CBB & MOIC Governance',
+    detail:
+      'C.R. No. 32196 disclosures aligned with MOIC Commercial Companies Law, CBB ESG Reporting Module, Key Person Dealing Policy, and Bahrain Bourse transparency rules.',
+  },
+] as const;
+
 export const JOB_OPENINGS: JobOpening[] = [
   {
     id: 'job-restaurant-manager',

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { ArrowRight, Check, MapPin } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Check, FileText, MapPin } from 'lucide-react';
 import { BFLC_ASSET_LIBRARY } from '../assets/bflcAssetLibrary';
 import {
+  AGM_ANNUAL_RESOURCES,
+  ANNUAL_REPORTS_ARCHIVE,
   BFLC_ASSETS,
   BRANDS_PORTFOLIO,
   BUSINESS_OPERATIONS,
@@ -49,8 +51,10 @@ export const BflcOption4Home: React.FC<BflcOption4HomeProps> = ({
   onSelectArticle,
 }) => {
   const [activeBusinessIdx, setActiveBusinessIdx] = useState(0);
+  const [selectedReportIdx, setSelectedReportIdx] = useState(0);
   const currentOp = BUSINESS_OPERATIONS[activeBusinessIdx];
   const currentVisual = BUSINESS_VISUALS[activeBusinessIdx];
+  const currentAnnualReport = ANNUAL_REPORTS_ARCHIVE[selectedReportIdx];
 
   const featuredBrands = [
     {
@@ -501,7 +505,191 @@ export const BflcOption4Home: React.FC<BflcOption4HomeProps> = ({
         </div>
       </section>
 
-      {/* 06. OUR CAPABILITIES */}
+      {/* 06. ANNUAL REPORTS & DISCLOSURES */}
+      <section className="bg-white py-20 lg:py-28 border-b border-[#e4dfd7]">
+        <div className="max-w-[1340px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div className="space-y-3 max-w-3xl">
+              <p className="b4-mono text-[12px] uppercase tracking-[0.16em] text-[#8e1b1b]">
+                Annual Reports · {COMPANY_INFO.bourseExchange}: {COMPANY_INFO.bourseSymbol}
+              </p>
+              <h2 className="b4-display text-3xl sm:text-[2.65rem] font-extrabold leading-[1.12] text-[#171412]">
+                Annual Reports, ESG Filings &amp; AGM Disclosures
+              </h2>
+              <p className="text-[16px] text-[#665f57] leading-relaxed">
+                Access verified annual corporate publications, audited financial statements,
+                and Annual General Meeting resources published by {COMPANY_INFO.legalName} on{' '}
+                {COMPANY_INFO.website}.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-3 self-start md:self-auto">
+              <button
+                type="button"
+                onClick={() => onNavigate('investors')}
+                className="b4-btn-primary"
+              >
+                Investor Portal
+              </button>
+              <a
+                href={currentAnnualReport.officialUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="b4-btn-outline-dark"
+              >
+                <span>bflc.com.bh Archive</span>
+                <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+              </a>
+            </div>
+          </div>
+
+          {/* Interactive Annual Year Selector Tabs */}
+          <div
+            role="tablist"
+            aria-label="BFLC Annual Reports by Year"
+            className="flex flex-wrap gap-2.5 border-b border-[#e4dfd7] pb-5"
+          >
+            {ANNUAL_REPORTS_ARCHIVE.map((report, idx) => {
+              const active = idx === selectedReportIdx;
+              return (
+                <button
+                  key={report.year}
+                  type="button"
+                  role="tab"
+                  aria-selected={active}
+                  onClick={() => setSelectedReportIdx(idx)}
+                  className={`px-4 py-2 rounded-full text-[13.5px] font-semibold transition-all whitespace-nowrap ${
+                    active
+                      ? 'bg-[#8e1b1b] text-white shadow-xs'
+                      : 'bg-[#f8f6f2] text-[#665f57] border border-[#e4dfd7] hover:border-[#8e1b1b]/40 hover:text-[#171412]'
+                  }`}
+                >
+                  <span className="b4-mono">{report.year}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Selected Annual Report + AGM Governance Split */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-7">
+            <div className="lg:col-span-7 bg-[#f8f6f2] border border-[#e4dfd7] rounded-2xl p-8 sm:p-10 flex flex-col justify-between space-y-6">
+              <div className="space-y-4">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <span className="b4-mono text-[12px] font-medium uppercase tracking-widest text-[#8e1b1b]">
+                    {currentAnnualReport.statusLabel}
+                  </span>
+                  <span className="text-[12.5px] font-medium text-[#665f57]">
+                    {currentAnnualReport.languages} · Auditor: {currentAnnualReport.auditor}
+                  </span>
+                </div>
+
+                <h3 className="b4-display text-2xl sm:text-3xl font-bold text-[#171412]">
+                  {currentAnnualReport.reportTitle}
+                </h3>
+
+                <p className="text-[15.5px] text-[#665f57] leading-relaxed">
+                  {currentAnnualReport.summary}
+                </p>
+
+                {/* Audited Key Financial Figures */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-1">
+                  {currentAnnualReport.keyMetrics.map((metric) => (
+                    <div
+                      key={metric.label}
+                      className="bg-white border border-[#e4dfd7] rounded-xl p-3.5 space-y-1"
+                    >
+                      <p className="b4-mono text-[10.5px] uppercase tracking-wider text-[#665f57]">
+                        {metric.label}
+                      </p>
+                      <p className="b4-display text-[16px] sm:text-[17px] font-bold text-[#171412] tabular-nums">
+                        {metric.value}
+                      </p>
+                      {metric.note && (
+                        <p className="text-[11px] text-[#8e1b1b] font-medium">
+                          {metric.note}
+                        </p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+
+                <p className="text-[13.5px] text-[#665f57] leading-relaxed bg-white/80 border border-[#e4dfd7] rounded-xl p-4">
+                  {currentAnnualReport.governanceNote}
+                </p>
+
+                <ul className="space-y-3 pt-1">
+                  {currentAnnualReport.documents.map((docTitle) => (
+                    <li
+                      key={docTitle}
+                      className="flex items-start gap-3 text-[14.5px] text-[#171412]"
+                    >
+                      <span className="mt-0.5 w-5 h-5 rounded-full bg-[#8e1b1b]/10 text-[#8e1b1b] flex items-center justify-center shrink-0">
+                        <FileText className="w-3.5 h-3.5" aria-hidden="true" />
+                      </span>
+                      <span>{docTitle}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="pt-5 border-t border-[#e4dfd7] flex flex-wrap items-center justify-between gap-4">
+                <span className="text-[13px] text-[#665f57]">
+                  Shareholder Desk:{' '}
+                  <a
+                    href={`mailto:${COMPANY_INFO.financeEmail}`}
+                    className="font-semibold text-[#8e1b1b] hover:underline"
+                  >
+                    {COMPANY_INFO.financeEmail}
+                  </a>
+                </span>
+                <button
+                  type="button"
+                  onClick={() => onNavigate('investors')}
+                  className="inline-flex items-center gap-1.5 text-[13.5px] font-semibold text-[#8e1b1b] hover:text-[#171412] transition-colors"
+                >
+                  <span>View statutory filings</span>
+                  <ArrowRight className="w-3.5 h-3.5" aria-hidden="true" />
+                </button>
+              </div>
+            </div>
+
+            <div className="lg:col-span-5 bg-white border border-[#e4dfd7] rounded-2xl p-8 flex flex-col justify-between space-y-6">
+              <div className="space-y-4">
+                <p className="b4-mono text-[12px] uppercase tracking-[0.16em] text-[#8e1b1b]">
+                  Annual General Meeting &amp; Governance
+                </p>
+                <div className="divide-y divide-[#e4dfd7]">
+                  {AGM_ANNUAL_RESOURCES.map((item) => (
+                    <div key={item.title} className="py-4 first:pt-1 last:pb-0 space-y-1">
+                      <h4 className="text-[15px] font-bold text-[#171412]">
+                        {item.title}
+                      </h4>
+                      <p className="text-[13.5px] text-[#665f57] leading-relaxed">
+                        {item.detail}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-[#e4dfd7] flex items-center justify-between gap-3">
+                <span className="b4-mono text-[12px] text-[#665f57]">
+                  IFRS · CBB · Bahrain Bourse
+                </span>
+                <button
+                  type="button"
+                  onClick={() => onNavigate('contact')}
+                  className="text-[13px] font-semibold text-[#8e1b1b] hover:underline"
+                >
+                  Request Annual Copy
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 07. OUR CAPABILITIES */}
       <section className="bg-[#f8f6f2] py-20 lg:py-28 border-b border-[#e4dfd7]">
         <div className="max-w-[1340px] mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           <div className="max-w-2xl space-y-3">
